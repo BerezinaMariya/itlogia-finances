@@ -38,8 +38,6 @@ module.exports = {
                 {from: "./src/static/fonts", to: "fonts"},
                 {from: "./src/templates", to: "templates"},
                 {from: "./src/static/images", to: "images"},
-                {from: "./src/popper.min.js", to: "js"},
-                {from: "./node_modules/bootstrap/dist/js/bootstrap.min.js", to: "js"},
             ],
         }),
     ],
