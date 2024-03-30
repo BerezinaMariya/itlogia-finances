@@ -4,14 +4,14 @@ import {Chart} from "chart.js/auto";
 export class Main {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
-        DatepickerInputUtils.changeInputType();
 
-        this.init();
+        DatepickerInputUtils.changeInputType();
+        this.initCanvases();
     }
 
-    init() {
+    initCanvases() {
         this.addCanvas('income-chart');
-        this.addCanvas('expenses-chart');
+        this.addCanvas('expense-chart');
     }
 
     addCanvas(canvasId) {
@@ -63,7 +63,7 @@ export class Main {
                             font: {
                                 size: 14,
                                 family: 'Roboto, sans-serif',
-                                style: 500,
+                                weight: 500,
                             },
                             color: '#000000',
                             padding: 12,
@@ -75,7 +75,7 @@ export class Main {
                         font: {
                             size: 28,
                             family: 'Roboto, sans-serif',
-                            style: 500,
+                            weight: 500,
                         },
                         color: '#052C65',
                         text: canvasId === 'income-chart' ? 'Доходы' : 'Расходы'

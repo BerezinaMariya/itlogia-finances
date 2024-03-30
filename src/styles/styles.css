@@ -1,6 +1,6 @@
 @import url("fonts.css");
 @import url("auth.css");
-@import url("finances.css");
+@import url("operations.css");
 
 * {
     margin: 0;
@@ -169,16 +169,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .chart-container {
     box-sizing: content-box;
-    width: 1091px;
+    width: 1045px;
     height: 467px;
 }
 
 .chart {
-    padding-right: 24px;
-    padding-left: 24px;
+    width: 50%;
+    height: 100%;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
 }
 
 .line {
-    margin-right: 60px;
-    margin-left: 60px;
+    margin-right: 54px;
+    margin-left: 54px;
 }

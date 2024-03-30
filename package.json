@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "Finances",
+  "description": "Operations",
   "main": "webpack.config.js",
   "scripts": {
     "dev": "webpack serve --open",
@@ -19,5 +19,8 @@
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.2"
   }
 }

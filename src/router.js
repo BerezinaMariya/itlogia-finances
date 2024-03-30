@@ -1,119 +1,18 @@
-import {Login} from "./components/auth/login";
-import {Signup} from "./components/auth/signup";
 import {CategoriesButtonUtils} from "./utils/categories-button-utils";
 import {SidebarUtils} from "./utils/sidebar-utils";
 import {PopoverUtils} from "./utils/popover-utils";
 import {AuthUtils} from "./utils/auth-utils";
-import {Logout} from "./components/auth/logout";
+import {GetBalanceUtils} from "./utils/get-balance-utils";
+import {RoutesUtils} from "./utils/routes-utils";
 
 export class Router {
     constructor() {
         this.titlePageElement = document.getElementById('title');
         this.contentPageElement = document.getElementById('content');
         this.userName = null;
+        this.routes = RoutesUtils.getRoutes(this.openNewRoute.bind(this));
 
         this.initEvents();
-
-        this.routes = [
-            {
-                route: '/',
-                title: 'Главная',
-                filePathTemplate: '/templates/pages/main.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/404',
-                title: 'Страница не найдена',
-                filePathTemplate: '/templates/pages/404.html',
-                useLayout: false,
-            },
-            {
-                route: '/login',
-                title: 'Авторизация',
-                filePathTemplate: '/templates/pages/auth/login.html',
-                useLayout: false,
-                load: () => {
-                    document.body.classList.add('auth-page');
-                    new Login(this.openNewRoute.bind(this));
-                },
-                unload: () => {
-                    document.body.classList.remove('auth-page');
-                },
-            },
-            {
-                route: '/signup',
-                title: 'Регистрация',
-                filePathTemplate: '/templates/pages/auth/signup.html',
-                useLayout: false,
-                load: () => {
-                    document.body.classList.add('auth-page');
-                    new Signup(this.openNewRoute.bind(this));
-                },
-                unload: () => {
-                    document.body.classList.remove('auth-page');
-                },
-            },
-            {
-                route: '/logout',
-                load: () => {
-                    new Logout(this.openNewRoute.bind(this));
-                },
-            },
-            {
-                route: '/income',
-                title: 'Доходы',
-                filePathTemplate: '/templates/pages/income/list.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/income/create',
-                title: 'Создание дохода',
-                filePathTemplate: '/templates/pages/income/create.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/income/edit',
-                title: 'Редактирование дохода',
-                filePathTemplate: '/templates/pages/income/edit.html',
-                useLayout: '/templates/layout.html',
-             },
-            {
-                route: '/expenses',
-                title: 'Расходы',
-                filePathTemplate: '/templates/pages/expenses/list.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/expenses/create',
-                title: 'Создание расхода',
-                filePathTemplate: '/templates/pages/expenses/create.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/expenses/edit',
-                title: 'Редактирование расхода',
-                filePathTemplate: '/templates/pages/expenses/edit.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/finances',
-                title: 'Доходы и расходы',
-                filePathTemplate: '/templates/pages/finances/list.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/finances/create',
-                title: 'Создание дохода/расхода',
-                filePathTemplate: '/templates/pages/finances/create.html',
-                useLayout: '/templates/layout.html',
-            },
-            {
-                route: '/finances/edit',
-                title: 'Редактирование дохода/расхода',
-                filePathTemplate: '/templates/pages/finances/edit.html',
-                useLayout: '/templates/layout.html',
-            },
-        ]
     }
 
     initEvents() {
@@ -178,12 +77,10 @@ export class Router {
                     this.profileNameElement = document.getElementById('profile-name');
                     if (!this.userName) {
                         let userInfo = AuthUtils.getAuthInfo(AuthUtils.userInfoKey);
-                        console.log(userInfo);
                         if (userInfo) {
                             userInfo = JSON.parse(userInfo);
                             if (userInfo.name || userInfo.lastName) {
                                 this.userName = userInfo.name + " " + userInfo.lastName;
-                                console.log(this.userName);
                             }
                         }
                     }
@@ -191,6 +88,7 @@ export class Router {
 
                     this.activateMenuItem(newRoute);
 
+                    GetBalanceUtils.getBalance(this.openNewRoute.bind(this)).then();
                     PopoverUtils.initPopover();
 
                     SidebarUtils.openMenuHandler();
@@ -204,7 +102,6 @@ export class Router {
                 newRoute.load();
             }
         } else {
-            console.log('No route found');
             history.pushState({}, '', '/404');
             await this.activateRoute();
         }

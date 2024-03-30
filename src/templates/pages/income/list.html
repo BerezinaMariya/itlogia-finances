@@ -2,78 +2,13 @@
     <h1 class="h1 text-primary-emphasis text-start mb-3">Доходы</h1>
 
     <div class="container text-start p-0">
-        <div class="row">
-            <div class="col-xl-4 col-lg-6 col-md-9 col-sm-12 p-2">
-                <div class="p-3 border rounded-4">
-                    <h2 class="fs-3">Депозиты</h2>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group me-2" role="group" aria-label="First group">
-                            <a href="/income/edit" class="btn btn-primary income-btn">Редактировать</a>
-                        </div>
-                        <div class="btn-group me-2" role="group" aria-label="Second group">
-                            <button type="button" class="btn btn-danger income-btn" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Удалить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-9 col-sm-12 p-2">
-                <div class="p-3 border rounded-4">
-                    <h2 class="fs-3">Зарплата</h2>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group me-2" role="group" aria-label="First group">
-                            <a href="/income/edit" class="btn btn-primary income-btn">Редактировать</a>
-                        </div>
-                        <div class="btn-group me-2" role="group" aria-label="Second group">
-                            <button type="button" class="btn btn-danger income-btn" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Удалить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-9 col-sm-12 p-2">
-                <div class="p-3 border rounded-4">
-                    <h2 class="fs-3">Сбережения</h2>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group me-2" role="group" aria-label="First group">
-                            <a href="/income/edit" class="btn btn-primary income-btn">Редактировать</a>
-                        </div>
-                        <div class="btn-group me-2" role="group" aria-label="Second group">
-                            <button type="button" class="btn btn-danger income-btn" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Удалить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-9 col-sm-12 p-2">
-                <div class="p-3 border rounded-4">
-                    <h2 class="fs-3">Инвестиции</h2>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group me-2" role="group" aria-label="First group">
-                            <a href="/income/edit" class="btn btn-primary income-btn">Редактировать</a>
-                        </div>
-                        <div class="btn-group me-2" role="group" aria-label="Second group">
-                            <button type="button" class="btn btn-danger income-btn" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">Удалить
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-9 col-sm-12 p-2">
-                <div class="p-3 border rounded-4 h-100 d-flex justify-content-center">
-                    <a href="/income/create" class="btn fs-4 text-body-tertiary d-flex align-items-center"
-                       id="add-income-button">+</a>
-                </div>
-            </div>
+        <div class="row" id="records">
+
         </div>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-4">
@@ -81,10 +16,10 @@
                     Вы действительно хотите удалить категорию? Связанные доходы будут удалены навсегда.
                 </div>
                 <div class="modal-footer p-0 border-0 justify-content-center mt-3">
-                    <button type="button" class="btn btn-success income-btn" data-bs-dismiss="modal">Да,
-                        удалить
-                    </button>
-                    <button type="button" class="btn btn-danger income-btn" data-bs-dismiss="modal"
+                    <a class="btn btn-success category-btn" id="delete-link">
+                        Да, удалить
+                    </a>
+                    <button type="button" class="btn btn-danger category-btn" data-bs-dismiss="modal"
                             aria-label="Close">Не удалять
                     </button>
                 </div>

@@ -30,7 +30,9 @@ export class Signup {
         this.commonErrorElement = document.getElementById('common-error');
     }
 
-    async signUp() {
+    async signUp(e) {
+        e.preventDefault();
+
         this.commonErrorElement.style.display = 'none';
 
         for (let i = 0; i < this.validations.length; i++) {

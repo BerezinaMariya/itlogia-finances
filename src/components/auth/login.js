@@ -27,7 +27,9 @@ export class Login {
         this.commonErrorElement = document.getElementById('common-error');
     }
 
-    async login() {
+    async login(e) {
+        e.preventDefault();
+
         this.commonErrorElement.style.display = 'none';
 
         if (ValidationUtils.validateForm(this.validations)) {

@@ -6,10 +6,6 @@ export class AuthUtils {
     static userInfoKey = 'userInfo';
 
     static setAuthInfo(accessToken, refreshToken, userInfo = null) {
-        console.log(accessToken);
-        console.log(refreshToken);
-        console.log(userInfo);
-
         localStorage.setItem(this.accessTokenKey, accessToken);
         localStorage.setItem(this.refreshTokenKey, refreshToken);
         if (userInfo) {
@@ -38,20 +34,21 @@ export class AuthUtils {
 
     static async updateRefreshToken() {
         let result = false;
-        const refreshToken = this.getAuthInfo(this.refreshTokenKey);
+        const tokenForRefresh = this.getAuthInfo(this.refreshTokenKey);
 
-        if (refreshToken) {
+        if (tokenForRefresh) {
             const response = await fetch(config.api + '/refresh', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({refreshToken: refreshToken})
+                body: JSON.stringify({refreshToken: tokenForRefresh})
             });
 
             if (response && response.status === 200) {
-                const tokens = await response.json();
+                const tokensObject = await response.json();
+                const tokens = tokensObject.tokens;
 
                 if (tokens && !tokens.error) {
                     this.setAuthInfo(tokens.accessToken, tokens.refreshToken);

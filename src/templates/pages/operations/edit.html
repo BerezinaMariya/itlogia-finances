@@ -4,36 +4,42 @@
     <form class="py-3">
         <div class="mb-3 row">
             <div class="col-xxl-4 col-xl-5 col-md-7 col-sm-8">
-                <input type="text" class="form-control" id="typeInput" value="Доход">
+                <select class="form-select" id="category-type-select" aria-label="Default select">
+                    <option value="" disabled selected>Тип...</option>
+                    <option value="income">Доход</option>
+                    <option value="expense">Расход</option>
+                </select>
             </div>
         </div>
         <div class="mb-3 row">
             <div class="col-xxl-4 col-xl-5 col-md-7 col-sm-8">
-                <input type="text" class="form-control" id="categoryInput" value="Зарплата">
+                <select class="form-select" id="category-select" aria-label="Default select">
+                    <option value="" disabled selected>Категория...</option>
+                </select>
             </div>
         </div>
         <div class="mb-3 row">
             <div class="col-xxl-4 col-xl-5 col-md-7 col-sm-8">
-                <input type="text" class="form-control" id="amountInput" value="500$">
+                <input type="text" class="form-control" id="amount-input" placeholder="Сумма в $...">
             </div>
         </div>
         <div class="mb-3 row">
             <div class="col-xxl-4 col-xl-5 col-md-7 col-sm-8">
-                <input type="text" class="datepicker-input form-control shadow-none" id="dateInput"
-                       value="11.09.2022">
+                <input type="text" class="datepicker-input form-control shadow-none" id="date-input"
+                       placeholder="Дата...">
             </div>
         </div>
         <div class="mb-3 row">
             <div class="col-xxl-4 col-xl-5 col-md-7 col-sm-8">
-                <input type="text" class="form-control" id="commentInput" placeholder="Комментарий...">
+                <input type="text" class="form-control" id="comment-input" placeholder="Комментарий...">
             </div>
         </div>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group me-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-success income-btn">Сохранить</button>
+                <button type="submit" class="btn btn-success operations-btn" id="save-button">Сохранить</button>
             </div>
             <div class="btn-group me-2" role="group" aria-label="Second group">
-                <a href="/finances" class="btn btn-danger income-btn">Отмена</a>
+                <a href="/operations" class="btn btn-danger operations-btn">Отмена</a>
             </div>
         </div>
     </form>

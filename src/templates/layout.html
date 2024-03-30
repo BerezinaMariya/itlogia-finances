@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a href="/finances" class="nav-link" id="finances-link">
+                <a href="/operations" class="nav-link" id="operations-link">
                     <svg class="bi pe-none me-2" width="16" height="16" viewBox="0 0 16 16" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -49,18 +49,18 @@
                 </a>
             </li>
 
-            <li class="accordion" id="accordionPanelsStayOpenExample">
+            <li class="accordion" id="accordion">
                 <div class="accordion-item" id="accordion-item">
-                    <button class="accordion-button px-3 py-2" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapseOne"
-                            aria-controls="panelsStayOpen-collapseOne" id="categories-toggle-button">
+                    <button class="accordion-button collapsed px-3 py-2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-controls="collapseOne"
+                             id="categories-toggle-button">
                         Категории
                     </button>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                    <div id="collapseOne" class="accordion-collapse collapse">
                         <div class="accordion-body p-0">
                             <a href="/income" class="nav-link accordion-link" id="income-link">Доходы</a>
-                            <a href="/expenses" class="nav-link accordion-link"
-                               id="expenses-link">Расходы</a>
+                            <a href="/expense" class="nav-link accordion-link"
+                               id="expense-link">Расходы</a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
         </ul>
 
         <div class="user-balance pb-4 px-3 d-flex align-items-center">
-            Баланс: <span class="ms-2 text-primary" id="user-balance">500$</span>
+            Баланс: <span class="ms-2 text-primary" id="user-balance"></span>
         </div>
 
         <div class="user-panel pt-4 pb-5 px-3 d-flex align-items-center">
