@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Router} from "./router";
-import './styles/adaptive.css'
+import "./styles/styles.scss";
 
 class App {
     constructor() {

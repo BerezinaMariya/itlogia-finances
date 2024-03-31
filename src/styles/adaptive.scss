@@ -1,0 +1,132 @@
+@media screen and (max-width: 1399px) {
+    .content-wrapper {
+        padding-left: 239px;
+        padding-right: 20px;
+    }
+
+    .chart-container {
+        width: 950px;
+        height: 437px;
+
+        .chart {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .line {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1219px) {
+    .chart-container {
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        .chart {
+            margin-bottom: 40px;
+            height: 467px;
+            width: 500px;
+        }
+
+        .line {
+            display: none;
+        }
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    table {
+        border: 0;
+
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            display: block;
+            border-bottom: 2px solid #DEE2E6;
+
+            td {
+                display: block;
+                min-height: 40px;
+                text-align: right;
+                border-bottom: 1px solid #DEE2E6;
+                border-right: 1px solid transparent;
+
+                &:first-child {
+                    border-top: 2px solid #DEE2E6;
+                }
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                &:before {
+                    content: attr(data-label);
+                    float: left;
+                    letter-spacing: 1.33px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    main {
+        display: block;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        background: white;
+        z-index: 100;
+
+        &.menu_open {
+            display: flex;
+        }
+
+        .menu-close {
+            display: block;
+        }
+
+    }
+
+    .content-wrapper {
+        padding-left: 20px;
+    }
+}
+
+@media screen and (max-width: 539px) {
+    .chart {
+        height: 374px;
+        width: 400px;
+
+        img {
+            object-fit: contain;
+        }
+    }
+}
+
+@media screen and (max-width: 419px) {
+    .chart-container .chart {
+        height: 262px;
+        width: 280px;
+    }
+
+    .form-auth {
+        min-width: 260px;
+        padding: 1rem;
+    }
+}

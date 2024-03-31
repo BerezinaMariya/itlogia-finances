@@ -51,11 +51,19 @@ export class Signup {
             });
 
             if (signupResult) {
-                AuthUtils.setAuthInfo(signupResult.tokens.accessToken, signupResult.tokens.refreshToken, {
-                    id: signupResult.user.id,
-                    name: signupResult.user.name,
-                    lastName: signupResult.user.lastName
+                const loginResult = await AuthService.logIn({
+                    email: this.emailElement.value,
+                    password: this.passwordElement.value,
+                    rememberMe: false
                 });
+
+                if (loginResult) {
+                    AuthUtils.setAuthInfo(loginResult.tokens.accessToken, loginResult.tokens.refreshToken, {
+                        id: loginResult.user.id,
+                        name: loginResult.user.name,
+                        lastName: loginResult.user.lastName
+                    });
+                }
 
                 return this.openNewRoute('/');
             }
