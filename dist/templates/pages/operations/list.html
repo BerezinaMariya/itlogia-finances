@@ -3,40 +3,40 @@
 
     <div class="btn-toolbar pb-4" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group me-2 mt-2" role="group" aria-label="First group">
-            <a href="/operations/create" class="btn btn-success category-btn">Создать доход</a>
+            <a href="/operations/create" class="btn btn-success operations-btn">Создать доход</a>
         </div>
         <div class="btn-group me-2 mt-2" role="group" aria-label="Second group">
-            <a href="/operations/create" class="btn btn-danger category-btn">Создать расход</a>
+            <a href="/operations/create" class="btn btn-danger operations-btn">Создать расход</a>
         </div>
     </div>
 
     <ul class="tabs list-unstyled ps-0 d-flex flex-wrap py-3 mb-0">
         <li class="tab-item me-4 mb-3">
-            <button type="button" class="btn btn-outline-secondary fw-bold px-3 active">Сегодня</button>
+            <button type="button" class="btn btn-outline-secondary fw-bold px-3 filter-btn active" id="today-operations">Сегодня</button>
         </li>
         <li class="tab-item me-4 mb-3">
-            <button type="button" class="btn btn-outline-secondary fw-bold px-3">Неделя</button>
+            <button type="button" class="btn btn-outline-secondary fw-bold px-3 filter-btn" id="week-operations">Неделя</button>
         </li>
         <li class="tab-item me-4 mb-3">
-            <button type="button" class="btn btn-outline-secondary fw-bold px-3">Месяц</button>
+            <button type="button" class="btn btn-outline-secondary fw-bold px-3 filter-btn" id="month-operations">Месяц</button>
         </li>
         <li class="tab-item me-4 mb-3">
-            <button type="button" class="btn btn-outline-secondary fw-bold px-3">Год</button>
+            <button type="button" class="btn btn-outline-secondary fw-bold px-3 filter-btn" id="year-operations">Год</button>
         </li>
         <li class="tab-item me-4 mb-3">
-            <button type="button" class="btn btn-outline-secondary fw-bold px-3">Все</button>
+            <button type="button" class="btn btn-outline-secondary fw-bold px-3 filter-btn" id="all-operations">Все</button>
         </li>
         <li class="tab-item d-flex align-items-center datepicker form-group p-0 me-4 mb-3">
             <label for="startDatepicker" class="pe-1 fs-6 fw-bold">с</label>
             <div class="input-group date" id="startDatepicker">
-                <input type="text" placeholder="Дата"
+                <input type="text" placeholder="Дата" id="start-date-input"
                        class="tab-input datepicker-input form-control shadow-none text-decoration-underline text-center fw-bold border-0">
                 <span class="input-group-append"></span>
             </div>
 
             <label for="endDatepicker" class="pe-1 ms-3 fs-6 fw-bold">по</label>
             <div class="input-group date" id="endDatepicker">
-                <input type="text" placeholder="Дата"
+                <input type="text" placeholder="Дата" id="end-date-input"
                        class="tab-input datepicker-input form-control shadow-none text-decoration-underline text-center fw-bold border-0">
                 <span class="input-group-append"></span>
             </div>
@@ -60,97 +60,12 @@
 
             <tbody id="records">
 
-            <tr class="text-center">
-                <td class="text-reset" data-label="№ операции">1</td>
-                <td class="text-reset" data-label="Тип">Расход</td>
-                <td class="text-reset" data-label="Категория">Жилье</td>
-                <td class="text-reset" data-label="Сумма">2500$</td>
-                <td class="text-reset" data-label="Дата">12.09.2022</td>
-                <td class="text-reset" data-label="Комментарий"></td>
-                <td data-label="">
-                    <div class="income-tools">
-                        <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="/images/icon-trash.png" alt="Иконка мусорного ведра"></a>
-                        <a href="/operations/edit">
-                            <img src="/images/icon-edit.png" alt="Иконка карандаша">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td class="text-reset" data-label="№ операции">2</td>
-                <td class="text-reset" data-label="Тип">Расход</td>
-                <td class="text-reset" data-label="Категория">Жилье</td>
-                <td class="text-reset" data-label="Сумма">2500$</td>
-                <td class="text-reset" data-label="Дата">12.09.2022</td>
-                <td class="text-reset" data-label="Комментарий"></td>
-                <td data-label="">
-                    <div class="income-tools">
-                        <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="/images/icon-trash.png" alt="Иконка мусорного ведра"></a>
-                        <a href="/operations/edit">
-                            <img src="/images/icon-edit.png" alt="Иконка карандаша">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td class="text-reset" data-label="№ операции">3</td>
-                <td class="text-reset" data-label="Тип">Расход</td>
-                <td class="text-reset" data-label="Категория">Жилье</td>
-                <td class="text-reset" data-label="Сумма">2500$</td>
-                <td class="text-reset" data-label="Дата">12.09.2022</td>
-                <td class="text-reset" data-label="Комментарий"></td>
-                <td data-label="">
-                    <div class="income-tools">
-                        <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="/images/icon-trash.png" alt="Иконка мусорного ведра"></a>
-                        <a href="/operations/edit">
-                            <img src="/images/icon-edit.png" alt="Иконка карандаша">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td class="text-reset" data-label="№ операции">4</td>
-                <td class="text-reset" data-label="Тип">Расход</td>
-                <td class="text-reset" data-label="Категория">Жилье</td>
-                <td class="text-reset" data-label="Сумма">2500$</td>
-                <td class="text-reset" data-label="Дата">12.09.2022</td>
-                <td class="text-reset" data-label="Комментарий"></td>
-                <td data-label="">
-                    <div class="income-tools">
-                        <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="/images/icon-trash.png" alt="Иконка мусорного ведра"></a>
-                        <a href="/operations/edit">
-                            <img src="/images/icon-edit.png" alt="Иконка карандаша">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td class="text-reset" data-label="№ операции">5</td>
-                <td class="text-reset" data-label="Тип">Расход</td>
-                <td class="text-reset" data-label="Категория">Жилье</td>
-                <td class="text-reset" data-label="Сумма">2500$</td>
-                <td class="text-reset" data-label="Дата">12.09.2022</td>
-                <td class="text-reset" data-label="Комментарий"></td>
-                <td data-label="">
-                    <div class="income-tools">
-                        <a href="#" class="me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="/images/icon-trash.png" alt="Иконка мусорного ведра"></a>
-                        <a href="/operations/edit">
-                            <img src="/images/icon-edit.png" alt="Иконка карандаша">
-                        </a>
-                    </div>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content p-4">
@@ -158,9 +73,9 @@
                     Вы действительно хотите удалить операцию?
                 </div>
                 <div class="modal-footer p-0 border-0 justify-content-center mt-3">
-                    <button type="button" class="btn btn-success operations-btn" data-bs-dismiss="modal">
+                    <a class="btn btn-success operations-btn" id="delete-link">
                         Да, удалить
-                    </button>
+                    </a>
                     <button type="button" class="btn btn-danger operations-btn" data-bs-dismiss="modal"
                             aria-label="Close">Не удалять
                     </button>

@@ -16,16 +16,22 @@ export class OperationsList {
         this.getOperations(DateFilterUtils.getCurrentDate()).then();
     }
 
+    findElements() {
+        this.filterButtons = document.querySelectorAll('.filter-btn');
+        this.startDateInputElement = document.getElementById('start-date-input');
+        this.endDateInputElement = document.getElementById('end-date-input');
+    }
+
     init() {
-        const inputs = [this.startDateInputElement, this.endDateInputElement];
+        this.inputs = [this.startDateInputElement, this.endDateInputElement];
 
         this.filterButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                this.getOperations(DateFilterUtils.toggleFilterButtonsHandler(e, this.filterButtons, inputs)).then();
+                this.getOperations(DateFilterUtils.toggleFilterButtonsHandler(e, this.filterButtons, this.inputs)).then();
             });
         });
 
-        inputs.forEach(input => {
+        this.inputs.forEach(input => {
             input.addEventListener('change', () => {
                 if (this.startDateInputElement.value && this.endDateInputElement.value
                     && parseInt(this.startDateInputElement.value[0]) !== 0 && parseInt(this.endDateInputElement.value[0]) !== 0) {
@@ -36,12 +42,6 @@ export class OperationsList {
                 }
             });
         });
-    }
-
-    findElements() {
-        this.filterButtons = document.querySelectorAll('.filter-btn');
-        this.startDateInputElement = document.getElementById('start-date-input');
-        this.endDateInputElement = document.getElementById('end-date-input');
     }
 
     async getOperations(filterDate) {

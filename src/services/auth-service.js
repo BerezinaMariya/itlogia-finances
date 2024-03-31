@@ -8,7 +8,6 @@ export class AuthService {
             return false;
         }
 
-        console.log(result.response);
         return result.response;
     }
 

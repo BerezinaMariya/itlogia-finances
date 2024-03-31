@@ -21,7 +21,9 @@ export class DateFilterUtils {
             button.classList.remove('active');
             e.currentTarget.classList.add('active');
 
-            if (button.id === "week-operations" && button.classList.contains('active')) {
+            if (button.id === "today-operations" && button.classList.contains('active')) {
+                this.dateFrom = new Date().toISOString().slice(0, 10);
+            } else if (button.id === "week-operations" && button.classList.contains('active')) {
                 const weekAgo = new Date().setDate(new Date().getDate() - 7);
                 this.dateFrom = new Date(weekAgo).toISOString().slice(0, 10);
             } else if (button.id === "month-operations" && button.classList.contains('active')) {

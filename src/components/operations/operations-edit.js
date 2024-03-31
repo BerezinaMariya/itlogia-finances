@@ -3,10 +3,13 @@ import {UrlUtils} from "../../utils/url-utils";
 import {OperationsService} from "../../services/operations-service";
 import {ValidationUtils} from "../../utils/validation-utils";
 import {CategoriesService} from "../../services/categories-service";
+import {DatepickerInputUtils} from "../../utils/datepicker-input-utils";
+import {SelectOptionsUtils} from "../../utils/select-options-utils";
 
 export class OperationsEdit {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+        DatepickerInputUtils.changeInputType();
 
         const id = UrlUtils.getUrlParam('id');
         if (!id) {
@@ -35,7 +38,11 @@ export class OperationsEdit {
     }
 
     init() {
-        this.categoryTypeSelect.addEventListener('change', this.getCategoriesList);
+        this.categoryTypeSelect.addEventListener('change', (e) => {
+            this.getCategoriesList(e).then();
+            SelectOptionsUtils.changeOptionTextColor();
+        });
+        this.categorySelect.addEventListener('change', SelectOptionsUtils.changeOptionTextColor);
         document.getElementById('save-button').addEventListener('click', this.updateOperation.bind(this));
     }
 
@@ -54,17 +61,16 @@ export class OperationsEdit {
 
         this.operationOriginalData = response.operation;
 
-        console.log(response.operation);
-
         const getCategoriesResponse = await CategoriesService.getCategories(response.operation.type);
         await GetCategoriesListUtils.getCategoriesList(getCategoriesResponse);
 
         this.showOperation(response.operation);
+        SelectOptionsUtils.changeOptionTextColor();
     }
 
     showOperation(operation) {
         this.categoryTypeSelect.value = operation.type;
-        this.categorySelect.value = 'Неизвестно';
+        this.categorySelect.value = operation.category;
         this.amountInputElement.value = operation.amount;
         this.dateInputElement.value = operation.date;
         this.commentInputElement.value = operation.comment;
@@ -76,7 +82,7 @@ export class OperationsEdit {
         }
 
         for (let i = 0; i < this.categorySelect.options.length; i++) {
-            if (this.categorySelect.options[i].value === operation.type) {
+            if (this.categorySelect.options[i].innerText === operation.category) {
                 this.categorySelect.selectedIndex = i;
             }
         }

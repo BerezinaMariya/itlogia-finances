@@ -30,14 +30,13 @@ export class ShowOperationsRecordsUtils {
                 tdNumberElement.setAttribute('data-label', '№ операции');
                 tdNumberElement.innerText = operations[i].id;
 
-                tdTypeElement.classList.add('text-reset');
+                tdTypeElement.classList.add(operations[i].type === 'income' ? 'text-success' : 'text-danger');
                 tdTypeElement.setAttribute('data-label', 'Тип');
-                tdTypeElement.style.color = operations[i].type === 'income' ? 'green' : 'red';
-                tdTypeElement.innerText = operations[i].type === 'income' ? 'Доход' : 'Расход';
+                tdTypeElement.innerText = operations[i].type === 'income' ? 'доход' : 'расход';
 
                 tdCategoryElement.classList.add('text-reset');
                 tdCategoryElement.setAttribute('data-label', 'Категория');
-                // tdCategoryElement.innerText = await CategoriesService.getCategory(id, operations[i].type).title;
+                tdCategoryElement.innerText = operations[i].category;
 
                 tdAmountElement.classList.add('text-reset');
                 tdAmountElement.setAttribute('data-label', 'Сумма');

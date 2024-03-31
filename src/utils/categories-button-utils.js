@@ -3,7 +3,6 @@ export class CategoriesButtonUtils {
         const categoriesToggleButtonElement = document.getElementById('categories-toggle-button');
 
         if (route.route === '/operations/create' || route.route === '/operations/edit') {
-            console.log('Edit');
             document.getElementById('operations-link').classList.remove('active');
             document.getElementById('income-link').classList.add('active');
         }

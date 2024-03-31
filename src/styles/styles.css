@@ -162,10 +162,10 @@ body {
     outline-offset: 0;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
+/*input[type="date"]::-webkit-calendar-picker-indicator {*/
+/*    display: none;*/
+/*    -webkit-appearance: none;*/
+/*}*/
 
 .chart-container {
     box-sizing: content-box;

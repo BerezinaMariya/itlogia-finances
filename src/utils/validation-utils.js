@@ -26,11 +26,9 @@ export class ValidationUtils {
 
         if (condition) {
             element.classList.remove('is-invalid');
-            console.log(condition);
             return true;
         } else {
             element.classList.add('is-invalid');
-            console.log(condition);
             return false;
         }
     }

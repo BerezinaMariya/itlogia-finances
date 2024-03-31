@@ -75,8 +75,8 @@ export class ShowCategoriesRecordsUtils {
         }
 
         const itemElement = document.createElement('div');
-        const itemContentElement = document.createElement('div');
-        const addItemElement = document.createElement('a');
+        const itemContentElement = document.createElement('a');
+        const addItemElement = document.createElement('span');
 
         addItemElement.innerText = '+';
 
@@ -87,20 +87,21 @@ export class ShowCategoriesRecordsUtils {
         itemElement.classList.add('p-2');
         itemElement.classList.add('category-item');
 
+        itemContentElement.classList.add('btn');
         itemContentElement.classList.add('p-3');
         itemContentElement.classList.add('border');
         itemContentElement.classList.add('rounded-4');
         itemContentElement.classList.add('h-100');
         itemContentElement.classList.add('d-flex');
         itemContentElement.classList.add('justify-content-center');
+        itemContentElement.setAttribute('href', '/' + category + '/create');
+        itemContentElement.setAttribute('id', 'add-' + category + '-button');
 
         addItemElement.classList.add('btn');
         addItemElement.classList.add('fs-4');
         addItemElement.classList.add('text-body-tertiary');
         addItemElement.classList.add('d-flex');
         addItemElement.classList.add('align-items-center');
-        addItemElement.setAttribute('href', '/' + category + '/create');
-        addItemElement.setAttribute('id', 'add-' + category + '-button');
 
         itemContentElement.appendChild(addItemElement);
         itemElement.appendChild(itemContentElement);

@@ -13,7 +13,7 @@ export class GetCategoriesListUtils {
                 const optionElement = document.createElement('option');
 
                 optionElement.classList.add('choice-option');
-                optionElement.setAttribute('value', categoriesList[i].id)
+                optionElement.setAttribute('value', categoriesList[i].id);
                 optionElement.innerText = categoriesList[i].title;
 
                 categorySelectElement.appendChild(optionElement);

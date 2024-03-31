@@ -1,31 +1,107 @@
 import {DatepickerInputUtils} from "../utils/datepicker-input-utils";
 import {Chart} from "chart.js/auto";
+import {DateFilterUtils} from "../utils/date-filter-utils";
+import {OperationsService} from "../services/operations-service";
 
 export class Main {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
         DatepickerInputUtils.changeInputType();
+
+        this.findElements();
+        this.init();
+
+        this.getOperations(DateFilterUtils.getCurrentDate()).then();
         this.initCanvases();
     }
 
+    init() {
+        const inputs = [this.startDateInputElement, this.endDateInputElement];
+
+        this.filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.getOperations(DateFilterUtils.toggleFilterButtonsHandler(e, this.filterButtons, inputs)).then();
+            });
+        });
+
+        inputs.forEach(input => {
+            input.addEventListener('change', () => {
+                if (this.startDateInputElement.value && this.endDateInputElement.value
+                    && parseInt(this.startDateInputElement.value[0]) !== 0 && parseInt(this.endDateInputElement.value[0]) !== 0) {
+                    this.filterButtons.forEach(button => {
+                        button.classList.remove('active');
+                    });
+                    this.getOperations({
+                        from: this.startDateInputElement.value,
+                        to: this.endDateInputElement.value
+                    }).then();
+                }
+            });
+        });
+    }
+
+    findElements() {
+        this.filterButtons = document.querySelectorAll('.filter-btn');
+        this.startDateInputElement = document.getElementById('start-date-input');
+        this.endDateInputElement = document.getElementById('end-date-input');
+    }
+
     initCanvases() {
-        this.addCanvas('income-chart');
-        this.addCanvas('expense-chart');
+        this.incomeChart = this.addCanvas('income-chart');
+        this.expenseChart = this.addCanvas('expense-chart');
+    }
+
+    async getOperations(filterDate) {
+        const response = await OperationsService.getOperations(filterDate);
+
+        if (response.error) {
+            alert(response.error);
+            return response.redirect ? this.openNewRoute(response.redirect) : null;
+        }
+
+        this.setChartData(response.operations);
+    }
+
+    setChartData(operations) {
+        this.incomeSectorValues = [];
+        this.expenseSectorValues = [];
+        this.incomeLabelValues = [];
+        this.expenseLabelValues = [];
+
+        const barColors = ["#DC3545", "#FD7E14", "#FFC107", "#20C997", "#0D6EFD", "#dc35a7", "#fda014", "#deff07", "#4ac920", "#0db5fd"];
+
+        operations.forEach(operation => {
+            if (operation.type === 'income') {
+                this.incomeSectorValues.push(operation.amount);
+                this.incomeLabelValues.push(operation.category);
+            } else {
+                this.expenseSectorValues.push(operation.amount);
+                this.expenseLabelValues.push(operation.category);
+            }
+        });
+
+        const chartData = (chartId) => {
+            return {
+                labels: chartId === 'income-chart' ? this.incomeLabelValues : this.expenseLabelValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: chartId === 'income-chart' ? this.incomeSectorValues : this.expenseSectorValues,
+                }]
+            };
+        }
+
+        const updateChartConfig = (chart) => {
+            chart.data = chartData(chart.canvas.id);
+            chart.update();
+        }
+
+        updateChartConfig(this.incomeChart);
+        updateChartConfig(this.expenseChart);
     }
 
     addCanvas(canvasId) {
         //pie
-        const labelValues = ["Red", "Orange", "Yellow", "Green", "Blue"];
-        const sectorValues = [55, 49, 44, 24, 50];
-        const barColors = [
-            "#DC3545",
-            "#FD7E14",
-            "#FFC107",
-            "#20C997",
-            "#0D6EFD"
-        ];
-
         const paddingBelowLegends = {
             id: 'paddingBelowLegends',
             beforeInit(chart) {
@@ -44,13 +120,6 @@ export class Main {
 
         const chartConfig = {
             type: "pie",
-            data: {
-                labels: labelValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: sectorValues,
-                }]
-            },
             options: {
                 responsive: true,
                 plugins: {
@@ -85,6 +154,6 @@ export class Main {
             plugins: [paddingBelowLegends]
         };
 
-        new Chart(canvasId, chartConfig);
+        return new Chart(canvasId, chartConfig);
     }
 }

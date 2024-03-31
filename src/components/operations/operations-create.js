@@ -2,10 +2,15 @@ import {CategoriesService} from "../../services/categories-service";
 import {ValidationUtils} from "../../utils/validation-utils";
 import {OperationsService} from "../../services/operations-service";
 import {GetCategoriesListUtils} from "../../utils/get-categories-list-utils";
+import {DatepickerInputUtils} from "../../utils/datepicker-input-utils";
+import {SelectOptionsUtils} from "../../utils/select-options-utils";
 
 export class OperationsCreate {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
+
+        DatepickerInputUtils.changeInputType();
+        SelectOptionsUtils.changeOptionTextColor();
 
         this.findElements();
 
@@ -28,7 +33,11 @@ export class OperationsCreate {
     }
 
     init() {
-        this.categoryTypeSelect.addEventListener('change', this.getCategoriesList);
+        this.categoryTypeSelect.addEventListener('change', (e) => {
+            this.getCategoriesList(e).then();
+            SelectOptionsUtils.changeOptionTextColor();
+        });
+        this.categorySelect.addEventListener('change', SelectOptionsUtils.changeOptionTextColor);
         document.getElementById('save-button').addEventListener('click', this.saveOperation.bind(this));
     }
 
