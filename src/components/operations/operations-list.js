@@ -13,7 +13,7 @@ export class OperationsList {
         this.findElements();
         this.init();
 
-        this.getOperations(DateFilterUtils.getCurrentDate()).then();
+        this.getOperations({period: ''}).then();
     }
 
     findElements() {
@@ -38,14 +38,20 @@ export class OperationsList {
                     this.filterButtons.forEach(button => {
                         button.classList.remove('active');
                     });
-                    this.getOperations({from: this.startDateInputElement.value, to: this.endDateInputElement.value}).then();
+                    this.getOperations({
+                        interval: {
+                            from: this.startDateInputElement.value,
+                            to: this.endDateInputElement.value
+                        }
+                    }).then();
                 }
             });
         });
     }
 
-    async getOperations(filterDate) {
-        const response = await OperationsService.getOperations(filterDate);
+    async getOperations(interval) {
+        console.log(interval);
+        const response = await OperationsService.getOperations(interval);
 
         if (response.error) {
             alert(response.error);

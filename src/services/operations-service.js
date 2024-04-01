@@ -8,9 +8,17 @@ export class OperationsService {
             operations: null
         };
 
-        const result = await HttpUtils.request('/operations?period=interval&dateFrom=' + date.from + '&dateTo=' + date.to);
+        let responseDate = '';
 
-        if (result.redirect || result.error || !result.response|| (result.response && result.response.error)) {
+        if (date.hasOwnProperty('period')) {
+            responseDate = '?period=' + date.period;
+        } else if (date.hasOwnProperty('interval')) {
+            responseDate = '?period=interval&dateFrom=' + date.interval.from + '&dateTo=' + date.interval.to;
+        }
+
+        const result = await HttpUtils.request('/operations' + responseDate);
+
+        if (result.redirect || result.error || !result.response || (result.response && result.response.error)) {
             returnObject.error = 'Возникла ошибка при запросе доходов/расходов. Обратитесь в поддержку';
             if (result.redirect) {
                 returnObject.redirect = result.redirect;
@@ -22,7 +30,7 @@ export class OperationsService {
         return returnObject;
     }
 
-    static async getOperation (id) {
+    static async getOperation(id) {
         const returnObject = {
             error: false,
             redirect: null,

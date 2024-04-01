@@ -12,7 +12,7 @@ export class Main {
         this.findElements();
         this.init();
 
-        this.getOperations(DateFilterUtils.getCurrentDate()).then();
+        this.getOperations({period: ''}).then();
         this.initCanvases();
     }
 
@@ -33,8 +33,10 @@ export class Main {
                         button.classList.remove('active');
                     });
                     this.getOperations({
-                        from: this.startDateInputElement.value,
-                        to: this.endDateInputElement.value
+                        interval: {
+                            from: this.startDateInputElement.value,
+                            to: this.endDateInputElement.value
+                        }
                     }).then();
                 }
             });
@@ -52,12 +54,25 @@ export class Main {
         this.expenseChart = this.addCanvas('expense-chart');
     }
 
-    async getOperations(filterDate) {
-        const response = await OperationsService.getOperations(filterDate);
+    async getOperations(date) {
+        const loader = document.getElementById('loader');
+        const line = document.getElementById('line');
+
+        loader.classList.remove('d-none');
+        loader.classList.add('d-flex');
+        line.style.display = 'none';
+
+        const response = await OperationsService.getOperations(date);
 
         if (response.error) {
             alert(response.error);
             return response.redirect ? this.openNewRoute(response.redirect) : null;
+        }
+
+        if (response.operations.length > 0) {
+            loader.classList.add('d-none');
+            loader.classList.remove('d-flex');
+            line.style.display = 'block';
         }
 
         this.setChartData(response.operations);

@@ -1,8 +1,4 @@
 .income-list, .expense-list {
-    .modal-body {
-        color: #290661;
-    }
-
     .category-item {
         min-height: 121px;
     }
@@ -16,10 +12,6 @@
 .expense-create, .expense-edit {
     .form-control {
         color: #290661;
-
-        &:active, &:focus {
-            box-shadow: unset !important;
-        }
     }
 }
 

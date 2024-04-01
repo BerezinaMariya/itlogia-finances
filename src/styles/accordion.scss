@@ -1,0 +1,56 @@
+.accordion {
+  --bs-accordion-border-width: 0;
+
+  .accordion-item {
+    border: none;
+    --bs-accordion-active-bg: transparent;
+    --bs-accordion-btn-focus-box-shadow: none;
+
+    .accordion-button {
+      font-size: 14px;
+      color: #052C65;
+
+      &::after {
+        transform: rotate(-90deg);
+      }
+
+      &:not(.collapsed)::after {
+        transform: rotate(-90deg);
+      }
+
+      &[aria-expanded="true"] {
+        font-size: 14px;
+        color: #052C65;
+        box-shadow: unset !important;
+
+        &::after {
+          transform: rotate(0deg);
+        }
+      }
+    }
+
+    &.accordion-active {
+      --bs-accordion-active-bg: #0D6EFD;
+      --bs-accordion-active-color: white;
+
+      &:has(> button) {
+        border: 1px solid #0D6EFD;
+      }
+
+      .accordion-button {
+        background: #0D6EFD;
+        color: white;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        &::after {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+
+    &:last-of-type > .accordion-collapse {
+      border: none;
+    }
+  }
+}

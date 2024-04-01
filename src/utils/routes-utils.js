@@ -35,11 +35,11 @@ export class RoutesUtils {
                 filePathTemplate: '/templates/pages/auth/login.html',
                 useLayout: false,
                 load: () => {
-                    document.body.classList.add('auth-page');
+                    document.body.classList.add('vh-100');
                     new Login(openNewRoute);
                 },
                 unload: () => {
-                    document.body.classList.remove('auth-page');
+                    document.body.classList.remove('vh-100');
                 },
             },
             {
@@ -48,11 +48,11 @@ export class RoutesUtils {
                 filePathTemplate: '/templates/pages/auth/signup.html',
                 useLayout: false,
                 load: () => {
-                    document.body.classList.add('auth-page');
+                    document.body.classList.add('vh-100');
                     new Signup(openNewRoute);
                 },
                 unload: () => {
-                    document.body.classList.remove('auth-page');
+                    document.body.classList.remove('vh-100');
                 },
             },
             {

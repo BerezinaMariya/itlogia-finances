@@ -4,7 +4,8 @@ export class SidebarUtils {
         const menuElement = document.getElementById('menu');
 
         menuOpenButtonElement.addEventListener('click', function () {
-            menuElement.classList.add('menu_open');
+            menuElement.classList.remove('d-none');
+            menuElement.classList.add('d-flex');
         });
     }
 
@@ -14,12 +15,14 @@ export class SidebarUtils {
         const overlayElement = document.getElementById('content-layout');
 
         menuCloseButtonElement.addEventListener('click', function (e) {
-            menuElement.classList.remove('menu_open');
+            menuElement.classList.remove('d-flex');
+            menuElement.classList.add('d-none');
         });
 
         overlayElement.addEventListener('click', function (e) {
-            if (menuElement.classList.contains('menu_open')) {
-                menuElement.classList.remove('menu_open');
+            if (menuElement.classList.contains('d-flex')) {
+                menuElement.classList.remove('d-flex');
+                menuElement.classList.add('d-none');
             }
         });
     }
