@@ -30,6 +30,8 @@ export class Login {
     async login(e) {
         e.preventDefault();
 
+        console.log('login');
+
         this.commonErrorElement.style.display = 'none';
 
         if (ValidationUtils.validateForm(this.validations)) {

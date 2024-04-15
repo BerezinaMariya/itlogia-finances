@@ -34,14 +34,19 @@
         </li>
     </ul>
 
-    <div class="chart-container d-flex justify-content-between">
-        <div class="chart">
-            <canvas id="income-chart"></canvas>
+    <div class="chart-container d-flex flex-column flex-xl-row align-items-center justify-content-xl-between position-relative">
+        <div class="chart w-100 w-xl-50 h-100 mb-5 mb-xl-0">
+            <canvas class="w-100 h-100" id="income-chart"></canvas>
         </div>
-        <div class="line"></div>
-        <div class="chart">
-            <canvas id="expense-chart"></canvas>
+        <div class="line d-xl-block d-none" id="line"></div>
+        <div class="chart w-100 w-xl-50 h-100">
+            <canvas class="w-100 h-100 mb-xl-none" id="expense-chart"></canvas>
+        </div>
+        <div class="d-none flex-column align-items-center justify-content-center position-absolute top-0 left-0 w-100 h-100 bg-body-secondary" id="loader">
+            <strong>Здесь будут Ваши доходы и расходы</strong>
+            <div class="spinner-border mt-5 text-center text-primary" role="status" aria-hidden="true"></div>
         </div>
     </div>
+
 </div>
 

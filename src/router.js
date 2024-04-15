@@ -24,7 +24,7 @@ export class Router {
     async openNewRoute(url) {
         const currentRoute = window.location.pathname;
         history.pushState({}, '', url);
-        await this.activateRoute(null, currentRoute);
+        await this.activateRoute(currentRoute);
     }
 
     async clickHandler(e) {

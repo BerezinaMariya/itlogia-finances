@@ -1,15 +1,15 @@
-<main class="wrapper flex-nowrap">
-    <div class="menu-icon mt-3 ms-3" id="menu-icon">
+<main class="wrapper flex-nowrap d-flex position-relative">
+    <div role="button" class="menu-icon mt-3 ms-3 d-block d-md-none position-absolute" id="menu-icon">
         <img src="/images/menu-icon.svg" alt="Menu icon">
     </div>
 
     <!-- Main Sidebar Container -->
-    <aside class="sidebar menu flex-column flex-shrink-0 bg-body-white border-end border-light-subtle" id="menu">
+    <aside class="sidebar menu d-none d-md-flex position-fixed flex-column flex-shrink-0 h-100 bg-white border-end border-light-subtle" id="menu">
         <a href="javascript:void(0);" class="brand-link pt-5 pb-3 ps-5">
             <img src="/images/logo-base.png" alt="Logo" class="brand-image">
         </a>
 
-        <div class="menu-close position-absolute top-0 end-0 mt-3 me-3" id="menu-close">
+        <div role="button" class="menu-close d-block d-md-none position-absolute top-0 end-0 mt-3 me-3 mb-5" id="menu-close">
             <img src="/images/menu-close-button.svg" alt="Close button">
         </div>
 
@@ -49,7 +49,7 @@
                 </a>
             </li>
 
-            <li class="accordion" id="accordion">
+            <li class="accordion nav-item" id="accordion">
                 <div class="accordion-item" id="accordion-item">
                     <button class="accordion-button collapsed px-3 py-2" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-controls="collapseOne"
@@ -58,8 +58,8 @@
                     </button>
                     <div id="collapseOne" class="accordion-collapse collapse">
                         <div class="accordion-body p-0">
-                            <a href="/income" class="nav-link accordion-link" id="income-link">Доходы</a>
-                            <a href="/expense" class="nav-link accordion-link"
+                            <a href="/income" class="nav-link accordion-link rounded-0" id="income-link">Доходы</a>
+                            <a href="/expense" class="nav-link accordion-link rounded-0"
                                id="expense-link">Расходы</a>
                         </div>
                     </div>
